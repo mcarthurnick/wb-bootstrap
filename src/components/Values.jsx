@@ -1,19 +1,30 @@
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import './Values.css'
+
 function Value({ title, description, action }) {
   return (
-    <div>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>{action}</p>
-    </div>
+    <Card className="valueCard">
+      <Card.Title>{title}</Card.Title>
+      <Card.Text>{description}</Card.Text>
+      <Button className="bg-success">{action}</Button>
+    </Card>
   );
 }
 
 export default function Values({ values }) {
   return (
-    <section>
-      {values.map(({ title, description, action }, index) => (
-        <Value key={index} title={title} description={description} action={action} />
-      ))}
-    </section>
+    <Container className="valueContainer">
+      <Row>
+        {values.map(({ title, description, action }, index) => (
+          <Col key={index}>
+            <Value title={title} description={description} action={action} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
